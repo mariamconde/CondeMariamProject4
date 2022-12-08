@@ -1,0 +1,184 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+}
+
+.nav-links li {
+  list-style: none;
+  color: black;
+  
+}
+
+.nav-links {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a :visited {
+  color: #f26c6b;
+}
+
+body {
+  background-color: #fbf5d3;
+}
+.about-text h3 {
+  text-align: left;
+  margin: 50px;
+}
+.about-text p {
+  text-align: left;
+  margin: 50px;
+  margin-top: -20px;
+  justify-content: center;
+  width: 80%;
+}
+
+.contact-text h3 {
+  text-align: left;
+  margin: 50px;
+}
+.contact-text p {
+  text-align: left;
+  margin: 50px;
+  margin-top: -20px;
+  justify-content: center;
+}
+
+.error-picture {
+  background-image: url(https://media.tenor.com/Jkha__Yjf0oAAAAi/sad-depression.gif);
+  height: 300px;
+}
+
+.error-text h3 {
+  font-size: 80px;
+  text-align: center;
+}
+
+.error-text p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.home-text h3 {
+  text-align: left;
+  margin: 50px;
+}
+
+.home-text p {
+  text-align: left;
+  margin: 50px;
+  margin-top: -20px;
+  justify-content: center;
+  width: 80%;
+}
+
+form {
+  line-height: 3em;
+}
+
+button {
+  /* margin-bottom: 20px; */
+  width: 10%;
+  align-self: center;
+  background: #f6ad9f;
+  border: none;
+  height: 42px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.35s;
+}
+
+button:hover {
+  background: #cf8475;
+}
+
+label {
+  text-align: center;
+  /* width: 100px; */
+}
+
+.create-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-form button {
+  justify-content: center;
+  width: 100%;
+}
+
+.title-info span {
+  display: inline-block;
+  margin: 0;
+  margin-left: 50px;
+  font-size: larger;
+  font-weight: bold;
+  line-height: 5em;
+  margin-right: 30%;
+}
+
+span {
+  font-size: larger;
+  font-weight: bold;
+}
+
+table {
+  margin-top: 0px;
+  margin-left: 5%;
+  border-spacing: 30px;
+  border-collapse: separate;
+}
+
+.user-img {
+  margin-left: 7%;
+  display: block;
+  width: 200px;
+  height: 150px;
+}
+
+.details-info {
+  margin-left: 50px;
+}
+
+input {
+  border: 1px;
+  border-radius: 5px;
+  /* margin-left: 50px; */
+  align-items: center;
+  padding: 5px;
+  display: inline-block;
+}
+
+.footer-links {
+  background-color: #f6ad9f;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.container-ul{
+  margin: 50px;
+  padding: 35px;
+  text-align: center;
+  background-color: #f6ad9f;
+  border-radius: 10px;
+  height: auto;
+  width: 500px;
+
+}

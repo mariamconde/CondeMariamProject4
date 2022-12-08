@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs')%>
+    <div class="title-info">
+      <span><%=connection.title%></span>
+    </div>
+    <table>
+      <tr>
+        <td>
+          <img
+          class="user-img"
+          src='<%= connection.imageURL%>'
+          alt="url selected by user"
+        />
+          </div>
+        </td>
+        <td>
+          <h4>Hosted by <%= connection.host%></h4>
+          <p>
+            <%= connection.topic%> <br>
+            <%= connection.date%> <br>
+            <%= connection.startTime%> - <%= connection.endTime%><br>
+            <%= connection.location%>
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="details-info">
+      <span>Details</span>
+      <p>
+       <%= connection.details%>
+      </p>
+      <div class="title-info">
+        <form>
+          <button type="submit" formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Edit</button>
+          <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id%>/?_method=DELETE">Delete</button>
+          
+      </form>
+      </div>
+    </div>
+    <%- include('../partials/footer.ejs')%>
