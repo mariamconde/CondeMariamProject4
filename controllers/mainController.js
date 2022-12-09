@@ -1,11 +1,11 @@
 exports.index = (req, res) => {
-    res.render("./main/index");
+    res.render('./main/index');
 };
 
 exports.show = (req, res) => {
-    res.render("./main/about");
+    res.render('./main/about');
 };
 
 exports.update = (req, res) => {
-    res.render("./main/contact");
+    res.render('./main/contact');
 };

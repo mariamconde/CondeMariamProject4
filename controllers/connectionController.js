@@ -26,7 +26,7 @@ exports.show = (req, res, next) => {
     let id = req.params.id;
     //an objectId is a 24-bit Hex string
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
         return next(err);
     }
@@ -46,7 +46,7 @@ exports.show = (req, res, next) => {
 exports.edit = (req, res, next) => {
     let id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
         return next(err);
     }

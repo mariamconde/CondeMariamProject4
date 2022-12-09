@@ -8,7 +8,6 @@
 .nav-links li {
   list-style: none;
   color: black;
-  
 }
 
 .nav-links {
@@ -118,6 +117,20 @@ label {
   width: 100%;
 }
 
+.create-profile {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  margin-left: -50px;
+  
+}
+
+.create-profile button {
+  justify-content: center;
+  width: 100%;
+}
+
 .title-info span {
   display: inline-block;
   margin: 0;
@@ -126,6 +139,19 @@ label {
   font-weight: bold;
   line-height: 5em;
   margin-right: 30%;
+}
+
+.welcome-text h2{
+  text-align: left;
+  margin: 50px;
+}
+
+.welcome-text p {
+  text-align: left;
+  margin: 50px;
+  margin-top: -20px;
+  justify-content: center;
+  width: 80%;
 }
 
 span {
@@ -172,7 +198,7 @@ input {
   height: 50px;
 }
 
-.container-ul{
+.container-ul {
   margin: 50px;
   padding: 35px;
   text-align: center;
@@ -180,5 +206,20 @@ input {
   border-radius: 10px;
   height: auto;
   width: 500px;
+}
 
+.success {
+  background: rgba(108, 192, 112, 0.7);
+  color: #fff;
+  width: 70%;
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.error {
+  background: rgba(255, 102, 51, 0.7);
+  color: #fff;
+  width: 70%;
+  text-align: center;
+  padding: 10px 10px;
 }
