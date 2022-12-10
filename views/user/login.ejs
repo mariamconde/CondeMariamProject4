@@ -3,12 +3,12 @@
         <form action='/users/login' method='POST'>
             <table>
                 <tr>
-                    <td><label for="email">Email</label></td>
+                    <td><label for="email">Email Address</label></td>
                     <td><input type="email" id="email" name="email" class = "fixed-width" required></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password</label></td>
-                    <td><input type="password" id="password" name="password" class = "fixed-width" required></td>
+                    <td><input type="password" id="password" name="password" class = "fixed-width" minlength="8" maxlength="64" required></td>
                 </tr>
                 
                 <tr>

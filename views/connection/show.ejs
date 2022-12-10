@@ -13,12 +13,12 @@
           </div>
         </td>
         <td>
-          <h4>Hosted by <%= connection.host%></h4>
+          <h4>Created by <%= connection.author.firstName + ' ' + connection.author.lastName%></h4>
           <p>
-            <%= connection.topic%> <br>
-            <%= connection.date%> <br>
-            <%= connection.startTime%> - <%= connection.endTime%><br>
-            <%= connection.location%>
+            Category: <%= connection.topic%> <br>
+            Date: <%= connection.date%> <br>
+            Timestamp: <%= connection.startTime%> - <%= connection.endTime%><br>
+            Location: <%= connection.location%>
           </p>
         </td>
       </tr>
@@ -30,10 +30,11 @@
        <%= connection.details%>
       </p>
       <div class="title-info">
+        <%if(user == connection.author._id) {%>
         <form>
           <button type="submit" formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Edit</button>
           <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id%>/?_method=DELETE">Delete</button>
-          
+       <%}%>
       </form>
       </div>
     </div>

@@ -15,15 +15,16 @@
             ><img src="/images/pear.jpg" alt="Pear with glasses photo" width="130" height="130"
           /></a>
         </li>
-
-          <li><a href="/users/new">Sign Up</a></li>
-          <li><a href="/users/login">Login</a></li>
-
-          <li><a href="/users/profile">Profile</a></li>
-          <li><a href="/users/logout">Logout</a></li>
-          <li><a href="/connections/new">Start A New Connection</a></li>
-          <li><a href="/connections">Connections</a></li>
-
+        <%if(!user) {%>
+            <li><a href="/connections">Connections</a></li>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/new">Sign Up</a></li>
+        <%} else {%>
+            <li><a href="/connections">Connections</a></li>
+            <li><a href="/connections/new">Start A New Connection</a></li>
+            <li><a href='/users/profile'>Profile</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        <%}%>
       </ul>
       </nav>  
 

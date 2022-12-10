@@ -2,30 +2,12 @@
 <div class = "welcome-text">
     <h2>Welcome, <%=user.firstName%></h2>
     <%if(connections.length) {%>
-        <p>You have created for the following connections</p>
-    <div class="create-profile">
-        <table class = "styled">
-            <tr class = "styled">
-            <th>Connection</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
-        <tbody>
-            <%connections.forEach(connection =>{ %>
-                <tr>
-                    <td><a href = '/connections/<%=connection.id%>'><p><%=connection.title%></p></a></td>
-                    <td><%=connection.topic%></td>
-                    <td><form>
-                        <button type = 'submit' formmethod="GET" formaction="/connections/<%= connection.id%>/edit">Edit</button>
-                        <button type = 'submit' formmethod="POST" formaction="/connections/<%= connection.id%>/?_method=DELETE">Delete</button>
-                    </form></td>
-            <% });%>
-        </tbody>
-    </tr>
-    </table>
-    </div>
-    <% } else {%>
+        <p>You have created the following connections</p>
+        <%connections.forEach(connection => { %>
+            <a href='/connections/<%=connection.id%>'><p><%=connection.title%></p></a>
+       <% }); 
+    }   else { %>
         <p>You have not created any connections</p>
     <%}%>
-</div>
+    </div>
     <%- include('../partials/footer.ejs')%>

@@ -1,4 +1,6 @@
 const model = require('../models/connection')
+const Rsvp = require('../models/rsvp');
+
 exports.index = (req, res) => {
     model.find()
         .then(connections => res.render('./connection/connections', { connections }))
@@ -12,8 +14,12 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
     //res.send('Created a new connection');
     let connection = new model(req.body);//create a new connection document
+    connection.author = req.session.user;
     connection.save()//insert the document to the database
-        .then(connection => res.redirect('/connections'))
+        .then(connection => {
+            req.flash('success', 'Connection has been created successfully');
+            res.redirect('/connections');
+        })
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;
@@ -24,15 +30,10 @@ exports.create = (req, res, next) => {
 
 exports.show = (req, res, next) => {
     let id = req.params.id;
-    //an objectId is a 24-bit Hex string
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
-    model.findById(id)
+    model.findById(id).populate('author', 'firstName lastName')
         .then(connection => {
             if (connection) {
+                console.log(connection);
                 res.render('./connection/show', { connection });
             } else {
                 let err = new Error('Cannot find a connection with id ' + id);
@@ -45,20 +46,9 @@ exports.show = (req, res, next) => {
 
 exports.edit = (req, res, next) => {
     let id = req.params.id;
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
     model.findById(id)
         .then(connection => {
-            if (connection) {
-                return res.render('./connection/edit', { connection });
-            } else {
-                let err = new Error('Cannot find a connection with id ' + id);
-                err.status = 404;
-                next(err);
-            }
+            return res.render('./connection/edit', { connection });
         })
         .catch(err => next(err));
 };
@@ -67,20 +57,9 @@ exports.update = (req, res, next) => {
     let connection = req.body;
     let id = req.params.id;
 
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
     model.findByIdAndUpdate(id, connection, { useFindAndModify: false, runValidators: true })
         .then(connection => {
-            if (connection) {
-                res.redirect('/connections/' + id);
-            } else {
-                let err = new Error('Cannot find a connection with id ' + id);
-                err.status = 404;
-                next(err);
-            }
+            res.redirect('/connections/' + id);
         })
         .catch(err => {
             if (err.name === 'ValidationError')
@@ -92,21 +71,35 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id;
 
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid connection id');
-        err.status = 400;
-        return next(err);
-    }
-
     model.findByIdAndDelete(id, { useFindAndModify: false })
         .then(connection => {
-            if (connection) {
-                res.redirect('/connections');
-            } else {
-                let err = new Error('Cannot find a connection with id ' + id);
-                err.status = 404;
-                return next(err);
-            }
+            res.redirect('/connections');
+        })
+        .catch(err => next(err));
+
+    Rsvp.deleteMany({ connection: id }, { useFindAndModify: false })
+        .then(result => {
+            res.redirect('/connections');
+        })
+        .catch(err => next(err));
+
+};
+
+exports.rsvp = (req, res, next) => {
+    let id = req.params.id;
+    let rsvp = req.params.rsvp;
+    let user = req.session.user;
+
+    let userRsvp = {
+        connection: id,
+        rsvp: req.body.rsvp,
+        user: req.session.user.id
+    }
+
+    Rsvp.findOneAndUpdate({ connection: id, user: user }, userRsvp, { useFindAndModify: false, runValidators: true, upsert: true, new: true })
+        .then(rsvp => {
+            req.flash('success', 'Successful RSVP!');
+            res.redirect('/users/profile');
         })
         .catch(err => next(err));
 };

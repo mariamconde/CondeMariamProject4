@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const connectionSchema = new Schema({
   title: { type: String, required: [true, 'title is required'] },
   topic: { type: String, required: [true, 'topic is required'] },
-  host: { type: String, required: [true, 'host name is required'] },
+  author: { type: Schema.Types.ObjectId, ref: 'User' },
   details: {
     type: String, required: [true, 'details are required'],
     minLength: [10, 'the details should have at least 10 characters']

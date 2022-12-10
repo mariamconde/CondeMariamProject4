@@ -154,6 +154,21 @@ label {
   width: 80%;
 }
 
+.profile-text h2 {
+  text-align: left;
+  margin: 50px
+}
+
+.profile-text  {
+  padding-left: 20px;
+  padding-top: 20px
+}
+
+.profile-text a{
+  text-decoration: none;
+  color: grey;
+}
+
 span {
   font-size: larger;
   font-weight: bold;
